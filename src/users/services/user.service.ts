@@ -3,7 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { IUser } from "../interfaces/user.interface";
 import { AddUserDto } from "../dtos/addUser.dto";
-import { BaseResponse } from "../dtos/baseResponse.dto";
+import { BaseResponse } from "../../baseResponse.dto";
 import { UpdateUserDto } from "../dtos/updateUser.dto";
 import { UserEntity } from "../user.entity";
 
@@ -13,7 +13,7 @@ export class UserService implements IUser {
   constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) { }
 
 
-  async addUser(user: AddUserDto): Promise<BaseResponse<UserEntity>> {
+  async addUser(user: AddUserDto): Promise<BaseResponse<AddUserDto>> {
     const addUser = await this.userRepository.save(user);
     return {
       status: 201,
@@ -23,7 +23,7 @@ export class UserService implements IUser {
   }
 
 
-  async updateUser(id: number, user: UpdateUserDto): Promise<BaseResponse<UserEntity | []>> {
+  async updateUser(id: number, user: UpdateUserDto): Promise<BaseResponse<AddUserDto | []>> {
     const updateUser = await this.userRepository.update(id, user);
     if (updateUser.affected == 0) {
       return {
@@ -58,7 +58,7 @@ export class UserService implements IUser {
   }
 
 
-  async getUser(id: number): Promise<BaseResponse<UserEntity | string>> {
+  async getUser(id: number): Promise<BaseResponse<AddUserDto | string>> {
     const findUser = await this.userRepository.findOne({ where: { id: id } });
     if (!findUser) {
       return {
@@ -73,7 +73,7 @@ export class UserService implements IUser {
       data: findUser
     }
   }
-  async getAllUsers(): Promise<BaseResponse<UserEntity[]>> {
+  async getAllUsers(): Promise<BaseResponse<AddUserDto[]>> {
     const findUsers = await this.userRepository.find();
     return {
       status: 200,
@@ -81,5 +81,14 @@ export class UserService implements IUser {
       data: findUsers
     }
 
+  }
+
+  async getUserByMobile(mobile: number): Promise<BaseResponse<AddUserDto | null>> {
+    const getUserByMobile=await this.userRepository.findOne({where:{mobile:mobile}});
+    return{
+      status:200,
+      message:'result of user',
+      data:getUserByMobile
+    }
   }
 }
