@@ -4,7 +4,7 @@ import {
     ExceptionFilter,
     HttpStatus,
   } from '@nestjs/common';
-  import { QueryFailedError , TypeORMError} from 'typeorm';
+  import { QueryFailedError } from 'typeorm';
   
   @Catch(QueryFailedError)
   export class MysqlExceptionFilter implements ExceptionFilter {
@@ -84,9 +84,10 @@ import {
             statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
             message = 'An unknown database error occurred.';
             break;
+
           case'ER_WARN_DATA_OUT_OF_RANGE':
-          statusCode=HttpStatus.BAD_REQUEST;
-          message='data out of range'
+            statusCode=HttpStatus.BAD_REQUEST;
+            message='data out of range'
         }
       }
   
