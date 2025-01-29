@@ -23,6 +23,6 @@ export class UserEntity {
    @Column({type:'varchar' , default:'user'})
    role:string
 
-   @Column({type:'varchar'})
+   @Column({type:'varchar',default:null})
    token:string
 }
