@@ -6,6 +6,7 @@ import { UserModule } from 'users/user.module';
 import { UserEntity } from 'users/user.entity';
 import { AuthModule } from './auth/auth.module';
 import configurations from 'config/configurations';
+import { ProjectEntity } from 'projects/projects.entity';
 
 @Module({
   imports: [UserModule,AuthModule,
@@ -19,7 +20,7 @@ import configurations from 'config/configurations';
         username: configService.get<string>('database.username'),
         password: configService.get<string>('database.password'),
         database: configService.get<string>('database.name'),
-        entities: [UserEntity],
+        entities: [UserEntity,ProjectEntity],
         synchronize: false, // فقط در محیط توسعه فعال باشد
       }),
     }),

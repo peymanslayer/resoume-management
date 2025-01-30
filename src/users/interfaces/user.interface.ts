@@ -7,6 +7,6 @@ export interface IUser{
   updateUser(id:number,user:UpdateUserDto):Promise<BaseResponse<AddUserDto | []>>;
   deleteUser(id:number):Promise<BaseResponse<string>>;
   getUser(id:number):Promise<BaseResponse<AddUserDto | string>>;
-  getUserByMobile(mobile:number):Promise<BaseResponse<AddUserDto|null>>
+  getUserByMobile(mobile:number):Promise<BaseResponse<AddUserDto|null>>;
   getAllUsers():Promise<BaseResponse<AddUserDto[]>>;
 }

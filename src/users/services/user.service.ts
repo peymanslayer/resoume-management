@@ -6,6 +6,7 @@ import { AddUserDto } from "../dtos/addUser.dto";
 import { BaseResponse } from "../../baseResponse.dto";
 import { UpdateUserDto } from "../dtos/updateUser.dto";
 import { UserEntity } from "../user.entity";
+import { SignUpDto } from "auth/dtos/signUp.dto";
 
 
 @Injectable()
@@ -13,7 +14,7 @@ export class UserService implements IUser {
   constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) { }
 
 
-  async addUser(user: AddUserDto): Promise<BaseResponse<AddUserDto>> {
+  async addUser(user: AddUserDto | SignUpDto): Promise<BaseResponse<AddUserDto>> {
     const addUser = await this.userRepository.save(user);
     return {
       status: 201,
