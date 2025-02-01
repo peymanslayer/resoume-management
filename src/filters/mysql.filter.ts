@@ -12,7 +12,8 @@ import {
       const ctx = host.switchToHttp();
       const response = ctx.getResponse();
       const request = ctx.getRequest();
-  
+      console.log(exception);
+      
       // پیش‌فرض‌ها
       let statusCode = HttpStatus.INTERNAL_SERVER_ERROR; // کد وضعیت HTTP پیش‌فرض
       let message = 'Internal server error'; // پیام خطای پیش‌فرض
@@ -90,7 +91,7 @@ import {
             message='data out of range'
         }
       }
-  
+     
       // ارسال پاسخ به کاربر
       response.status(statusCode).json({
         statusCode,

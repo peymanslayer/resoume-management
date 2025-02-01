@@ -1,11 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
-import { ProjectEntity } from "./projects.entity";
-import { IProjects } from "./interfaces/projects.interface";
+import { ProjectEntity } from "../projects.entity";
+import { IProjects } from "../interfaces/projects.interface";
 import { BaseResponse } from "baseResponse.dto";
-import { AddProjectDto } from "./dtos/addProject.dto";
-import { UpdateProjectDto } from "./dtos/updateProject.dto";
+import { AddProjectDto } from "../dtos/addProject.dto";
+import { UpdateProjectDto } from "../dtos/updateProject.dto";
 
 @Injectable()
 export class ProjectsService implements IProjects {

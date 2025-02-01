@@ -1,13 +1,13 @@
 import { Entity , Column , PrimaryGeneratedColumn , ManyToOne } from "typeorm";
-import { UserEntity } from "users/user.entity";
+import { User } from "../users/user.entity";
 
-@Entity()
+@Entity('project')
 export class ProjectEntity{
   @PrimaryGeneratedColumn()
   id:number
 
   @Column({type:'varchar',nullable:false})
-  project:string
+  projectName:string
 
   @Column({type:'varchar',nullable:false})
   projectDescription:string
@@ -15,6 +15,9 @@ export class ProjectEntity{
   @Column({type:'json',nullable:false})
   projectSkills:string[]
 
-  @ManyToOne(()=>UserEntity,(user)=>user.projects)
-  userId:UserEntity
+  @Column({type:'varchar',nullable:false})
+  history:string
+
+  @ManyToOne(()=>User,(user)=>user.projects)
+  userId:User
 }

@@ -1,8 +1,8 @@
-import { ProjectEntity } from "projects/projects.entity";
-import { Entity , Column , PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { ProjectEntity } from "../projects/projects.entity";
+import { Entity , Column , PrimaryGeneratedColumn, OneToMany  } from "typeorm";
 
-@Entity()
-export class UserEntity {
+@Entity('user')
+export class User {
    @PrimaryGeneratedColumn()
    id:number;
    
@@ -26,18 +26,6 @@ export class UserEntity {
 
    @Column({type:'varchar',default:null})
    token:string
-
-   @Column({type:'varchar',nullable:true})
-   description:string
-
-   @Column({type:'varchar',nullable:false})
-   education:string
-  
-   @Column({type:'json',nullable:false})
-   skills:string[]
-
-   @Column({type:'varchar',nullable:true})
-   experience:string
 
    @OneToMany(()=>ProjectEntity,(project)=>project.userId)
    projects:ProjectEntity[]

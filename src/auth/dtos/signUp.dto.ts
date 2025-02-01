@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsOptional, MaxLength, MinLength } from "class-validator/types"
+import { IsEmail, IsNotEmpty, IsOptional, MaxLength, MinLength } from "class-validator"
 
 export class SignUpDto{
 @IsNotEmpty()

@@ -6,11 +6,11 @@ import { ConfigModule } from "@nestjs/config";
 import { ConfigService } from "@nestjs/config";
 import { UserModule } from "users/user.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { UserEntity } from "users/user.entity";
+import { User } from "users/user.entity";
 import { UserService } from "users/services/user.service";
 
 @Module({
-  imports:[TypeOrmModule.forFeature([UserEntity]),JwtModule.registerAsync({ // استفاده از registerAsync برای بارگذاری پیکربندی
+  imports:[TypeOrmModule.forFeature([User]),JwtModule.registerAsync({ // استفاده از registerAsync برای بارگذاری پیکربندی
     imports: [ConfigModule], // وارد کردن ConfigModule
     useFactory: (configService: ConfigService) => ({
       secret: configService.get<string>('jwt.secret'), // استفاده از ConfigService برای دریافت کلید

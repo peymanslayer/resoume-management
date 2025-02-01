@@ -1,4 +1,4 @@
-import { IsArray, IsNotEmpty , IsOptional } from "class-validator/types";
+import { IsArray, IsNotEmpty , IsOptional } from "class-validator";
 
 export class UpdateProjectDto {
 

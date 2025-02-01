@@ -5,13 +5,13 @@ import { IUser } from "../interfaces/user.interface";
 import { AddUserDto } from "../dtos/addUser.dto";
 import { BaseResponse } from "../../baseResponse.dto";
 import { UpdateUserDto } from "../dtos/updateUser.dto";
-import { UserEntity } from "../user.entity";
+import { User } from "../user.entity";
 import { SignUpDto } from "auth/dtos/signUp.dto";
 
 
 @Injectable()
 export class UserService implements IUser {
-  constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) { }
+  constructor(@InjectRepository(User) private readonly userRepository: Repository<User>) { }
 
 
   async addUser(user: AddUserDto | SignUpDto): Promise<BaseResponse<AddUserDto>> {

@@ -1,6 +1,10 @@
-import { UserEntity } from "../../users/user.entity";
+import { User } from "../../users/user.entity";
 import { DataSource } from "typeorm";
 import configurations from "config/configurations";
+import * as dotenv from 'dotenv';
+import { ProjectEntity } from '../../projects/projects.entity';
+
+dotenv.config()
 
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -10,6 +14,6 @@ export const AppDataSource = new DataSource({
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE,
     synchronize:false ,
-    entities: [UserEntity],
+    entities: [User,ProjectEntity],
     migrations: ["src/migrations/*.ts"],
 });

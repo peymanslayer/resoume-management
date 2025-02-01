@@ -28,19 +28,6 @@ export class AddUserDto{
   @IsOptional()
   token:string
 
-  @IsOptional()
-  description:string
-
-  @IsNotEmpty()
-  education:string
-
-  @IsArray()
-  @IsNotEmpty()
-  skills:string[]
-
-  @IsOptional()
-  experience:string
-
   @IsArray()
   @IsOptional()
   @ValidateNested({ each: true })

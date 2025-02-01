@@ -7,7 +7,7 @@ import { BaseResponse } from "baseResponse.dto";
 import { LogInDto } from "./dtos/login.dto";
 import { UserService } from "users/services/user.service";
 import { InjectRepository } from "@nestjs/typeorm";
-import { UserEntity } from "users/user.entity";
+import { User } from "users/user.entity";
 import { Repository } from "typeorm";
 import { SignUpDto } from "./dtos/signUp.dto";
 
@@ -15,7 +15,7 @@ import { SignUpDto } from "./dtos/signUp.dto";
 export class AuthService implements IAuth {
     constructor(private readonly userServie: UserService,
         private readonly jwtService: JwtService,
-        @InjectRepository(UserEntity) private readonly userRepo:Repository<UserEntity>
+        @InjectRepository(User) private readonly userRepo:Repository<User>
     ) { }
     async signUp(user: SignUpDto): Promise<BaseResponse<AddUserDto | string>> {
         const findUser = await this.userServie.getUserByMobile(user.mobile);
